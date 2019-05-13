@@ -18,7 +18,9 @@ export default (state = {}, action) => {
     case UPDATE_STREAM:
       return { ...state, [action.payload.id]: action.payload };
     case DELETE_STREAM:
-      return _.omit(state, action.payload);
+      const key = action.payload
+      const {[key]:val, ...rest} = state
+      return rest
     default:
       return state;
   }
